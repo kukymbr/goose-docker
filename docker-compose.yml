@@ -1,0 +1,33 @@
+version: "3.5"
+
+services:
+
+  # Database, postgres for example
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - default
+    # To be sure to run migrations only when postgres is ready to receive connections
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      interval: 10s
+      timeout: 1s
+      retries: 5
+
+  migrations:
+    image: ghcr.io/kukymbr/goose-docker:3.11.2
+    restart: no
+    # To be sure to run migrations only when postgres is ready to receive connections
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - DB_DRIVER=postgres
+      - DB_CONNECTION=host=postgres port=5432 user=postgres password=postgres dbname=postgres
+    volumes:
+      - ./migrations:/migrations
+    networks:
+      - default
