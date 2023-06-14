@@ -1,4 +1,4 @@
-# goose-docker 🪿
+# [goose-docker](https://github.com/kukymbr/goose-docker) 🪿
 
 [![License](https://img.shields.io/github/license/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/blob/master/LICENSE)
 [![Release](https://img.shields.io/github/release/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/releases/latest)
