@@ -48,3 +48,8 @@ services:
 ```
 
 See the [compose.yml](compose.yml) file for the full example.
+
+### `latest` tag notice
+
+The `latest` tag of this image points to the latest commit to the `main` branch 
+and not supposed to be used in the production. Always specify a semver tag for production use.

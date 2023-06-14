@@ -2,6 +2,8 @@ name: Push to Docker Hub registry
 
 on:
   push:
+    branches:
+      - main
     tags:
       - v*
 
@@ -21,7 +23,7 @@ jobs:
         run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
-        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login hub.docker.com -u ${{ secrets.DOCKERHUB_LOGIN }} $ --password-stdin
+        run: docker login hub.docker.com -u ${{ secrets.DOCKERHUB_LOGIN }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push image
         run: |
