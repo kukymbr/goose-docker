@@ -1,5 +1,6 @@
 FROM alpine:3
 MAINTAINER kukymbr
+LABEL description="goose migrations in docker"
 
 ENV GOOSE_VERSION_TAG="v3.11.2"
 

@@ -47,4 +47,4 @@ services:
       - ./migrations:/migrations
 ```
 
-See the [docker-compose.yml](compose.yml) file for the full example.
+See the [compose.yml](compose.yml) file for the full example.
