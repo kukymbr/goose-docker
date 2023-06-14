@@ -1,7 +1,15 @@
-# goose-docker
+# goose-docker 🪿
+
+[![License](https://img.shields.io/github/license/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/release/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/releases/latest)
 
 Docker configuration for the [goose](https://github.com/pressly/goose) migration tool.
+
 Based on ideas of the [gomicro/docker-goose](https://github.com/gomicro/docker-goose) repository.
+Features:
+* No need to create your own Dockerfile;
+* docker compose usage;
+* 🪿 goose emoji in readme.
 
 ## Usage
 
@@ -9,7 +17,7 @@ Image expects 2 environment variables to be set:
 * `DB_DRIVER` is a database driver (e.g. `postgres`)
 * `DB_CONNECTION` is a database connection params.
 
-Also, expects the `/migration` directory mounted to the image with a migration files, for example .sql.
+Also, it expects the `/migration` directory mounted to the image with a migration files.
 
 For example, pure docker call:
 
