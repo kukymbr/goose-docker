@@ -22,9 +22,11 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    env_file:
+      - .env
     environment:
-      - DB_DRIVER=postgres
-      - DB_CONNECTION=host=postgres port=5432 user=postgres password=postgres dbname=postgres
+      - GOOSE_DRIVER=postgres
+      - GOOSE_DBSTRING=host=postgres port=5432 user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} dbname=${POSTGRES_DB}
     volumes:
       - ./migrations:/migrations
     networks:

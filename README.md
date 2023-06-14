@@ -14,8 +14,8 @@ Features:
 ## Usage
 
 Image expects 2 environment variables to be set: 
-* `DB_DRIVER` is a database driver (e.g. `postgres`)
-* `DB_CONNECTION` is a database connection params.
+* `GOOSE_DRIVER` is a database driver (e.g. `postgres`)
+* `GOOSE_DBSTRING` is a database connection params.
 
 Also, it expects the `/migration` directory mounted to the image with a migration files.
 
@@ -23,8 +23,8 @@ For example, pure docker call:
 
 ```shell
 docker run --rm -v ./migrations:/migrations --network host \
-  -e DB_DRIVER="postgres" \
-  -e DB_CONNECTION="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
+  -e GOOSE_DRIVER="postgres" \
+  -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
   ghcr.io/kukymbr/goose-docker:3.11.2
 ```
 
@@ -39,8 +39,8 @@ services:
   migrations:
     image: ghcr.io/kukymbr/goose-docker:3.11.2
     environment:
-      - DB_DRIVER=postgres
-      - DB_CONNECTION=host=postgres port=5432 user=postgres password=postgres dbname=postgres
+      - GOOSE_DRIVER=postgres
+      - GOOSE_DBSTRING=host=postgres port=5432 user=postgres password=postgres dbname=postgres
     volumes:
       - ./migrations:/migrations
 ```
