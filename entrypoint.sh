@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-goose -v -dir=/migrations up
+goose ${GOOSE_VERBOSE:+"-v"} -dir=/migrations up

@@ -8,14 +8,16 @@ Docker configuration for the [goose](https://github.com/pressly/goose) migration
 Based on ideas of the [gomicro/docker-goose](https://github.com/gomicro/docker-goose) repository.
 Features:
 * No need to create your own Dockerfile;
+* goose env vars are used;
 * docker compose usage;
 * 🪿 goose emoji in readme.
 
 ## Usage
 
-Image expects 2 environment variables to be set: 
-* `GOOSE_DRIVER` is a database driver (e.g. `postgres`)
-* `GOOSE_DBSTRING` is a database connection params.
+Image expects environment variables to be set: 
+* `GOOSE_DRIVER` is a database driver (e.g. `postgres`);
+* `GOOSE_DBSTRING` is a database connection params;
+* `GOOSE_VERBOSE` is an optional variable, if `true`, goose will be executed with the `-v` flag. 
 
 Also, it expects the `/migration` directory mounted to the image with a migration files.
 
