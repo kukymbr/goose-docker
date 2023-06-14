@@ -22,9 +22,10 @@ Also, it expects the `/migration` directory mounted to the image with a migratio
 For example, pure docker call:
 
 ```shell
-docker run ghcr.io/kukymbr/goose-docker:3.11.2 --rm -i -v ./migrations:/migrations \
+docker run --rm -v ./migrations:/migrations --network host \
   -e DB_DRIVER="postgres" \
-  -e DB_CONNECTION="host=postgres port=5432 user=postgres password=postgres dbname=postgres"
+  -e DB_CONNECTION="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
+  ghcr.io/kukymbr/goose-docker:3.11.2
 ```
 
 ### docker compose

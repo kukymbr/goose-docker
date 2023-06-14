@@ -3,9 +3,6 @@ MAINTAINER kukymbr
 
 ENV GOOSE_VERSION_TAG="v3.11.2"
 
-ARG DB_DRIVER
-ARG DB_CONNECTION
-
 RUN apk update && \
     apk upgrade && \
     rm -rf /var/cache/apk/*
