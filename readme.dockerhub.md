@@ -21,6 +21,9 @@ Image expects environment variables to be set:
 * `GOOSE_DBSTRING` is a database connection params;
 * `GOOSE_VERBOSE` is an optional variable, if `true`, goose will be executed with the `-v` flag.
 
+See the [goose usage](https://github.com/pressly/goose#usage)
+for available drivers and format of the connection string.
+
 Also, it expects the `/migration` directory mounted to the image with a migration files.
 
 For example, pure docker call:
@@ -55,3 +58,7 @@ See the [compose.yml](https://github.com/kukymbr/goose-docker/blob/main/compose.
 
 The `latest` tag of this image points to the latest commit to the `main` branch
 and not supposed to be used in the production. Always specify a semver tag for production use.
+
+## License
+
+[MIT licensed](https://github.com/kukymbr/goose-docker/blob/main/LICENSE).
