@@ -6,8 +6,6 @@ services:
     restart: unless-stopped
     env_file:
       - .env
-    networks:
-      - default
     # To be sure to run migrations only when postgres is ready to receive connections
     healthcheck:
       test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
@@ -18,17 +16,15 @@ services:
   migrations:
     image: ghcr.io/kukymbr/goose-docker:3.11.2
     restart: no
+    env_file:
+      - .env
     # To be sure to run migrations only when postgres is ready to receive connections
     depends_on:
       postgres:
         condition: service_healthy
-    env_file:
-      - .env
     environment:
       - GOOSE_DRIVER=postgres
       - GOOSE_DBSTRING=host=postgres port=5432 user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} dbname=${POSTGRES_DB}
       - GOOSE_VERBOSE=true
     volumes:
       - ./migrations:/migrations
-    networks:
-      - default
