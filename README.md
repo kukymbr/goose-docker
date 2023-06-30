@@ -32,7 +32,7 @@ For example, pure docker call:
 docker run --rm -v ./migrations:/migrations --network host \
   -e GOOSE_DRIVER="postgres" \
   -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
-  ghcr.io/kukymbr/goose-docker:3.11.2
+  ghcr.io/kukymbr/goose-docker:3.13.0
 ```
 
 ### docker compose
@@ -44,7 +44,7 @@ services:
   # ... Add your DB service
   
   migrations:
-    image: ghcr.io/kukymbr/goose-docker:3.11.2
+    image: ghcr.io/kukymbr/goose-docker:3.13.0
     environment:
       - GOOSE_DRIVER=postgres
       - GOOSE_DBSTRING=host=postgres port=5432 user=postgres password=postgres dbname=postgres

@@ -2,7 +2,7 @@ FROM alpine:3
 MAINTAINER kukymbr
 LABEL description="goose migrations in docker"
 
-ENV GOOSE_VERSION_TAG="v3.11.2"
+ENV GOOSE_VERSION_TAG="v3.13.0"
 
 RUN apk update && \
     apk upgrade && \
