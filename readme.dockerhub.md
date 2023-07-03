@@ -14,6 +14,14 @@ Features:
 * docker compose usage;
 * 🪿 goose emoji in readme.
 
+## Docker Hub notice
+
+The base registry for this image is on GitHub. 
+The Docker Hub version may be outdated.
+
+Visit the [ghcr.io/kukymbr/goose-docker](https://ghcr.io/kukymbr/goose-docker) 
+for the actual version.
+
 ## Usage
 
 Image expects environment variables to be set:
