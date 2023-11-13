@@ -16,7 +16,7 @@ Features:
 
 ## Usage
 
-**Image Environment Variables:**
+**Image Environment Variables**
 
 The following environment variables are required for the image to work correctly:
 
@@ -27,11 +27,11 @@ The following environment variables are required for the image to work correctly
 See the [goose usage](https://github.com/pressly/goose#usage) 
 for available drivers and format of the connection string.
 
-**Migration Files Directory:**
+**Migration Files Directory**
 
 The image expects the `/migrations` directory to be mounted to the container, and it should contain your migration files.
 
-## Example Usage:
+## Example Usage
 
 For example, pure docker call:
 
