@@ -16,15 +16,22 @@ Features:
 
 ## Usage
 
-Image expects environment variables to be set: 
-* `GOOSE_DRIVER` is a database driver (e.g. `postgres`);
-* `GOOSE_DBSTRING` is a database connection params;
-* `GOOSE_VERBOSE` is an optional variable, if `true`, goose will be executed with the `-v` flag. 
+**Image Environment Variables:**
+
+The following environment variables are required for the image to work correctly:
+
+- `GOOSE_DRIVER`: This should specify the database driver (e.g., `postgres`).
+- `GOOSE_DBSTRING`: Specify the database connection parameters in this variable.
+- `GOOSE_VERBOSE` (optional): If set to `true`, goose will be executed with the `-v` flag.
 
 See the [goose usage](https://github.com/pressly/goose#usage) 
 for available drivers and format of the connection string.
 
-Also, it expects the `/migration` directory mounted to the image with a migration files.
+**Migration Files Directory:**
+
+The image expects the `/migrations` directory to be mounted to the container, and it should contain your migration files.
+
+## Example Usage:
 
 For example, pure docker call:
 
