@@ -40,7 +40,7 @@ For example, pure docker call:
 docker run --rm -v ./migrations:/migrations --network host \
   -e GOOSE_DRIVER="postgres" \
   -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
-  kukymbr/goose-docker:3.15.1
+  kukymbr/goose-docker:3.16.0
 ```
 
 ### docker compose
@@ -52,7 +52,7 @@ services:
   # ... Add your DB service
   
   migrations:
-    image: kukymbr/goose-docker:3.15.1
+    image: kukymbr/goose-docker:3.16.0
     environment:
       - GOOSE_DRIVER=postgres
       - GOOSE_DBSTRING=host=postgres port=5432 user=postgres password=postgres dbname=postgres
