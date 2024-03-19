@@ -26,5 +26,8 @@ services:
       - GOOSE_DRIVER=postgres
       - GOOSE_DBSTRING=host=postgres port=5432 user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} dbname=${POSTGRES_DB}
       - GOOSE_VERBOSE=true
+      # Provide the `GOOSE_COMMAND` variable to change the goose command to execute:
+      # - GOOSE_COMMAND=up-to
+      # - GOOSE_COMMAND_ARG=20230607203836
     volumes:
       - ./migrations:/migrations
