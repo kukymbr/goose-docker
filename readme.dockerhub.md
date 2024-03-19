@@ -7,7 +7,7 @@
 
 Docker configuration for the [pressly/goose](https://github.com/pressly/goose) migration tool.
 
-Based on ideas of the [gomicro/docker-goose](https://github.com/gomicro/docker-goose) repository.
+Based on ideas of the `gomicro/docker-goose` repository.
 Features:
 * No need to create your own Dockerfile;
 * goose env vars are used;
