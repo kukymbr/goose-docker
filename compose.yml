@@ -8,7 +8,7 @@ services:
       - .env
     # To be sure to run migrations only when postgres is ready to receive connections
     healthcheck:
-      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'" ]
       interval: 10s
       timeout: 1s
       retries: 5
@@ -27,7 +27,10 @@ services:
       - GOOSE_DBSTRING=host=postgres port=5432 user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} dbname=${POSTGRES_DB}
       - GOOSE_VERBOSE=true
       # Provide the `GOOSE_COMMAND` variable to change the goose command to execute:
-      # - GOOSE_COMMAND=up-to
-      # - GOOSE_COMMAND_ARG=20230607203836
+      #- GOOSE_COMMAND=up-to
+      #- GOOSE_COMMAND_ARG=20230607203836
+      # Or a placeholders to set it dynamically from the environment:
+      #- GOOSE_COMMAND=${GOOSE_COMMAND}
+      #- GOOSE_COMMAND_ARG=${GOOSE_COMMAND_ARG}
     volumes:
       - ./migrations:/migrations

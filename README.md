@@ -81,6 +81,25 @@ services:
 
 See the [compose.yml](compose.yml) file for the full example.
 
+#### Overriding the environment variables
+
+If you need to dynamically override the environment values provided in the docker compose or in the .env files,
+add these variables into the `environment` section with a placeholder as a value, for example:
+
+```yaml
+migrations:
+  # ...
+  environment:
+    - GOOSE_COMMAND=${GOOSE_COMMAND}
+    - GOOSE_COMMAND_ARG=${GOOSE_COMMAND_ARG}
+```
+
+When you can override the values:
+
+```shell
+GOOSE_COMMAND="create" GOOSE_COMMAND_ARG="test_migration sql" docker compose run --rm migrations
+```
+
 ### The `latest` tag notice
 
 The `latest` tag of this image points to the latest commit to the `main` branch 
