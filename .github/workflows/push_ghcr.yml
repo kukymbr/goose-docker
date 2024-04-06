@@ -58,5 +58,8 @@ jobs:
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
 
-#      - name: Test image
-#        run: |
+      - name: Test docker compose
+        run: |
+          sed -i 's/3.19.2/$VERSION/g' .env
+          docker compose up -d
+          docker compose down
