@@ -1,4 +1,6 @@
-# [goose-docker](https://github.com/kukymbr/goose-docker) 🪿
+<img align="right" width="125" src="assets/goose-in-box.png" alt="image with a gopher in a goose costume in a box">
+
+# [goose-docker](https://github.com/kukymbr/goose-docker)
 
 [![License](https://img.shields.io/github/license/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/blob/master/LICENSE)
 [![Release](https://img.shields.io/github/release/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/releases/latest)
@@ -13,7 +15,7 @@ Features:
 * goose env vars are used;
 * docker compose usage;
 * all goose commands are available, not only `up`;
-* 🪿 goose emoji in readme.
+* an image with a gopher in a goose costume in a box is even worse than an image with a gopher in a goose costume.
 
 ## Usage
 
