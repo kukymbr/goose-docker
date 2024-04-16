@@ -70,6 +70,18 @@ docker run --rm -v ./migrations:/migrations --network host \
   kukymbr/goose-docker:3.19.2
 ```
 
+Example with `create` command:
+
+```shell
+docker run --rm -v ./migrations:/migrations \
+  -e GOOSE_COMMAND="create" \
+  -e GOOSE_COMMAND_ARG="my_new_migration_name sql" \
+  kukymbr/goose-docker:latest
+```
+
+⚠️ The `create` example works only in the `latest` tag until the next goose release.
+See the [issue](https://github.com/kukymbr/goose-docker/issues/3#issuecomment-2014180248) for more info.
+
 ### docker compose
 
 Docker compose example:
