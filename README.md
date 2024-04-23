@@ -50,7 +50,7 @@ For example, pure docker call:
 docker run --rm -v ./migrations:/migrations --network host \
   -e GOOSE_DRIVER="postgres" \
   -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
-  ghcr.io/kukymbr/goose-docker:3.19.2
+  ghcr.io/kukymbr/goose-docker:3.20.0
 ```
 
 Example with `up-to` command:
@@ -61,10 +61,10 @@ docker run --rm -v ./migrations:/migrations --network host \
   -e GOOSE_COMMAND_ARG="20230607203836" \
   -e GOOSE_DRIVER="postgres" \
   -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
-  ghcr.io/kukymbr/goose-docker:3.19.2
+  ghcr.io/kukymbr/goose-docker:3.20.0
 ```
 
-Example with `create` command:
+Example with `create` command (works since v3.20.0):
 
 ```shell
 docker run --rm -v ./migrations:/migrations \
@@ -72,9 +72,6 @@ docker run --rm -v ./migrations:/migrations \
   -e GOOSE_COMMAND_ARG="my_new_migration_name sql" \
   ghcr.io/kukymbr/goose-docker:latest
 ```
-
-⚠️ The `create` example works only in the `latest` tag until the next goose release.
-See the [issue](https://github.com/kukymbr/goose-docker/issues/3#issuecomment-2014180248) for more info.
 
 ### docker compose
 
@@ -85,7 +82,7 @@ services:
   # ... Add your DB service
   
   migrations:
-    image: ghcr.io/kukymbr/goose-docker:3.19.2
+    image: ghcr.io/kukymbr/goose-docker:3.20.0
     environment:
       - GOOSE_DRIVER=postgres
       - GOOSE_DBSTRING=host=postgres port=5432 user=postgres password=postgres dbname=postgres
