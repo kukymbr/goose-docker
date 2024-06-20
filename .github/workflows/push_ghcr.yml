@@ -61,7 +61,7 @@ jobs:
       - name: Test docker compose
         run: |
           VERSION=${{ steps.names.outputs.VERSION }}
-          sed -i "s/3.20.0/$VERSION/" .env
+          sed -i "s/3.21.1/$VERSION/" .env
           cat .env
           
           docker compose up -d
