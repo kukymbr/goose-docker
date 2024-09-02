@@ -11,4 +11,4 @@ fi
 
 # shellcheck disable=SC2046
 # shellcheck disable=SC2116
-goose ${GOOSE_VERBOSE:+"-v"} -dir="$dir" "${GOOSE_COMMAND:-up}" $(echo "$GOOSE_COMMAND_ARG")
+goose ${GOOSE_VERBOSE:+"-v"} -dir="$dir" "$command" $(echo "$GOOSE_COMMAND_ARG")
