@@ -111,6 +111,16 @@ When you can override the values:
 GOOSE_COMMAND="create" GOOSE_COMMAND_ARG="test_migration sql" docker compose run --rm migrations
 ```
 
+### AMD64/ARM64 architecture
+
+To use an image for the specific architecture (arm64/amd64), use the `-arm64` and `-amd64` tag suffixes, for example:
+
+```text
+ghcr.io/kukymbr/goose-docker:latest-arm64
+```
+
+This feature is available only for the `latest` tag until the next goose release.
+
 ### The `latest` tag notice
 
 The `latest` tag of this image points to the latest commit to the `main` branch 
