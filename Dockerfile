@@ -8,10 +8,16 @@ RUN apk update && \
     apk upgrade && \
     rm -rf /var/cache/apk/*
 
-ADD "https://github.com/pressly/goose/releases/download/$GOOSE_VERSION_TAG/goose_linux_x86_64" /bin/goose
+ARG TARGETARCH
+RUN case "$TARGETARCH" in \
+      "amd64") GOOSE_ARCH="x86_64";; \
+      "arm64") GOOSE_ARCH="arm64";; \
+      *) echo "Unsupported architecture: $TARGETARCH"; exit 1;; \
+    esac && \
+    wget -O /bin/goose "https://github.com/pressly/goose/releases/download/$GOOSE_VERSION_TAG/goose_linux_$GOOSE_ARCH"
+
 RUN chmod +x /bin/goose
 
 ADD ./entrypoint.sh /goose-docker/entrypoint.sh
 
 ENTRYPOINT ["/goose-docker/entrypoint.sh"]
-
