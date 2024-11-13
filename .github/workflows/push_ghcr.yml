@@ -13,6 +13,9 @@ env:
 
 jobs:
   push_ghcr:
+    strategy:
+      matrix:
+        target_arch: [ "amd64", "arm64" ]
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -22,7 +25,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --build-arg TARGETARCH=${{ matrix.target_arch }} --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
@@ -44,19 +47,29 @@ jobs:
           # Use Docker `latest` tag convention
           [ "$VERSION" == "main" ] && VERSION=latest
           
+          ARCH_VERSION = "$VERSION-${{ matrix.target_arch }}"
+          
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
+          echo ARCH_VERSION=$ARCH_VERSION
           
           echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_OUTPUT
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "ARCH_VERSION=$ARCH_VERSION" >> $GITHUB_OUTPUT
 
       - name: Push image
         run: |
           IMAGE_ID=${{ steps.names.outputs.IMAGE_ID }}
           VERSION=${{ steps.names.outputs.VERSION }}
+          ARCH_VERSION=${{ steps.names.outputs.ARCH_VERSION }}
           
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+          if [ "${{ matrix.target_arch }}" = "amd64" ]; then
+            docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+            docker push $IMAGE_ID:$VERSION
+          fi;
+          
+          docker tag $IMAGE_NAME $IMAGE_ID:$ARCH_VERSION
+          docker push $IMAGE_ID:$ARCH_VERSION
 
       - name: Test docker compose
         run: |
