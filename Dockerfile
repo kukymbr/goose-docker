@@ -8,7 +8,7 @@ RUN apk update && \
     apk upgrade && \
     rm -rf /var/cache/apk/*
 
-ARG TARGETARCH
+ARG TARGETARCH=amd64
 RUN case "$TARGETARCH" in \
       "amd64") GOOSE_ARCH="x86_64";; \
       "arm64") GOOSE_ARCH="arm64";; \
