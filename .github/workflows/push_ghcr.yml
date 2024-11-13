@@ -47,7 +47,7 @@ jobs:
           # Use Docker `latest` tag convention
           [ "$VERSION" == "main" ] && VERSION=latest
           
-          ARCH_VERSION = "$VERSION-${{ matrix.target_arch }}"
+          ARCH_VERSION="$VERSION-${{ matrix.target_arch }}"
           
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
