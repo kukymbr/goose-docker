@@ -1,4 +1,4 @@
-name: Push to Docker Hub registry
+name: Push to GitHub registry
 
 on:
   push:
@@ -9,7 +9,6 @@ on:
 
 env:
   IMAGE_NAME: goose-docker
-  IMAGE_ID: "kukymbr/goose-docker:latest"
 
 jobs:
   push_dockerhub:
@@ -20,13 +19,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: 'amd64,arm64'
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          version: v0.19.2
+          platforms: linux/amd64,linux/arm64
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_LOGIN }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Prepare tag
+      - name: Generate names
+        id: names
         run: |
           IMAGE_ID=${{ vars.DOCKERHUB_GROUP }}/$IMAGE_NAME
 
@@ -42,11 +53,15 @@ jobs:
           # Use Docker `latest` tag convention
           [ "$VERSION" == "main" ] && VERSION=latest
           
-          IMAGE_ID="$IMAGE_ID:$VERSION"
-          echo "IMAGE_ID=$IMAGE_ID"
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          
+          echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
+          platforms: linux/amd64, linux/arm64
           push: true
-          tags: ${{ env.IMAGE_ID }}
+          tags: ${{ env.IMAGE_ID }}:${{ env.VERSION }}
