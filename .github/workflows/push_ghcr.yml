@@ -67,8 +67,7 @@ jobs:
         with:
           platforms: linux/amd64, linux/arm64
           push: true
-          tags:
-            - ${{ env.IMAGE_ID }}:${{ env.VERSION }}
+          tags: ${{ env.IMAGE_ID }}:${{ env.VERSION }}
 
       - name: Test docker compose
         run: |
