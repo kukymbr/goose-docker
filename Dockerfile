@@ -8,12 +8,13 @@ RUN apk update && \
     apk upgrade && \
     rm -rf /var/cache/apk/*
 
-ARG TARGETARCH=amd64
+ARG TARGETARCH
 RUN case "$TARGETARCH" in \
-      "amd64") GOOSE_ARCH="x86_64";; \
+      "amd64"|"") GOOSE_ARCH="x86_64";; \
       "arm64") GOOSE_ARCH="arm64";; \
-      *) echo "Unsupported architecture: $TARGETARCH"; exit 1;; \
+      *) echo "Unsupported architecture: $TARGETARCH; switching to amd64."; GOOSE_ARCH="x86_64";; \
     esac && \
+    echo "Requesting goose binary $GOOSE_VERSION_TAG for $GOOSE_ARCH (TARGETARCH=$TARGETARCH)..." && \
     wget -O /bin/goose "https://github.com/pressly/goose/releases/download/$GOOSE_VERSION_TAG/goose_linux_$GOOSE_ARCH"
 
 RUN chmod +x /bin/goose
