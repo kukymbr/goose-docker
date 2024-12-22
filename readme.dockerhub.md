@@ -1,4 +1,6 @@
-# [goose-docker](https://github.com/kukymbr/goose-docker) 🪿
+<img align="right" width="125" src="https://github.com/kukymbr/goose-docker/raw/main/assets/goose-in-box.png" alt="image with a gopher in a goose costume in a box">
+
+# [goose-docker](https://github.com/kukymbr/goose-docker)
 
 [![License](https://img.shields.io/github/license/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/blob/master/LICENSE)
 [![Release](https://img.shields.io/github/release/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/releases/latest)
@@ -13,7 +15,7 @@ Features:
 * goose env vars are used;
 * docker compose usage;
 * all goose commands are available, not only `up`;
-* 🪿 goose emoji in readme.
+* an image with a gopher in a goose costume in a box is even worse than an image with a gopher in a goose costume.
 
 ## Docker Hub notice
 
@@ -97,6 +99,29 @@ services:
 ```
 
 See the [compose.yml](https://github.com/kukymbr/goose-docker/blob/main/compose.yml) file for the full example.
+
+#### Overriding the environment variables
+
+If you need to dynamically override the environment values provided in the docker compose or in the .env files,
+add these variables into the `environment` section with a placeholder as a value, for example:
+
+```yaml
+migrations:
+  # ...
+  environment:
+    - GOOSE_COMMAND=${GOOSE_COMMAND}
+    - GOOSE_COMMAND_ARG=${GOOSE_COMMAND_ARG}
+```
+
+When you can override the values:
+
+```shell
+GOOSE_COMMAND="create" GOOSE_COMMAND_ARG="test_migration sql" docker compose run --rm migrations
+```
+
+### amd64/arm64 architecture
+
+The ARM64 architecture support is added since the v3.23.0.
 
 ### The `latest` tag notice
 
