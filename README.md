@@ -50,7 +50,7 @@ For example, pure docker call:
 docker run --rm -v ./migrations:/migrations --network host \
   -e GOOSE_DRIVER="postgres" \
   -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
-  ghcr.io/kukymbr/goose-docker:3.24.0
+  ghcr.io/kukymbr/goose-docker:3.24.1
 ```
 
 Example with `up-to` command:
@@ -61,7 +61,7 @@ docker run --rm -v ./migrations:/migrations --network host \
   -e GOOSE_COMMAND_ARG="20230607203836" \
   -e GOOSE_DRIVER="postgres" \
   -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
-  ghcr.io/kukymbr/goose-docker:3.24.0
+  ghcr.io/kukymbr/goose-docker:3.24.1
 ```
 
 Example with `create` command (works since v3.20.0):
@@ -82,7 +82,7 @@ services:
   # ... Add your DB service
   
   migrations:
-    image: ghcr.io/kukymbr/goose-docker:3.24.0
+    image: ghcr.io/kukymbr/goose-docker:3.24.1
     environment:
       - GOOSE_DRIVER=postgres
       - GOOSE_DBSTRING=host=postgres port=5432 user=postgres password=postgres dbname=postgres
