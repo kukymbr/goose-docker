@@ -1,0 +1,33 @@
+services:
+
+  # Run migrations against the database.
+  .migrate:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    restart: no
+    env_file:
+      - .env
+    volumes:
+      - ./migrations/migrations:/migrations
+
+  # Assert migrated values.
+  .assert:
+    build:
+      dockerfile: Dockerfile.psql
+      context: .
+    env_file:
+      - .env
+
+  # Rollback all the migrations.
+  .cleanup:
+    image: ghcr.io/kukymbr/goose-docker:${GOOSE_DOCKER_TAG}
+    restart: no
+    env_file:
+      - .env
+    environment:
+      - GOOSE_VERBOSE=true
+      - GOOSE_COMMAND=down-to
+      - GOOSE_COMMAND_ARG=0
+    volumes:
+      - ./migrations/migrations:/migrations

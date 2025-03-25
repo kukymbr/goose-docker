@@ -1,0 +1,20 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push_ghcr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run tests
+        run: |
+          cd tests
+          ./run.sh

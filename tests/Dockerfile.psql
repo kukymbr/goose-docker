@@ -1,0 +1,10 @@
+FROM alpine:3
+MAINTAINER kukymbr
+LABEL description="psql client for goose-docker testing purposes"
+
+RUN apk --no-cache add postgresql15-client
+
+ADD ./psql-assert.sh /goose-docker-assert/entrypoint.sh
+RUN chmod a+x /goose-docker-assert/entrypoint.sh
+
+ENTRYPOINT [ "/goose-docker-assert/entrypoint.sh" ]

@@ -1,0 +1,87 @@
+services:
+
+  # Postgres to run the tests.
+  goose_docker_test_postgres:
+    image: postgres:15-alpine
+    hostname: ${POSTGRES_HOSTNAME}
+    container_name: ${POSTGRES_HOSTNAME}
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d postgres'" ]
+      interval: 3s
+      timeout: 1s
+      retries: 5
+
+  # Migrations to set up databases for the tests.
+  migrations_setup:
+    image: ghcr.io/kukymbr/goose-docker:${GOOSE_DOCKER_TAG}
+    restart: no
+    env_file:
+      - .env
+    environment:
+      GOOSE_DRIVER: postgres
+      GOOSE_DBSTRING: host=${POSTGRES_HOSTNAME} port=5432 user=${POSTGRES_USER} password=${POSTGRES_PASSWORD} dbname=postgres
+    depends_on:
+      goose_docker_test_postgres:
+        condition: service_healthy
+    volumes:
+      - ./migrations/setup:/migrations
+
+  # Test up-to command.
+  migrations_up_to:
+    extends:
+      file: base.compose.yml
+      service: .migrate
+    depends_on:
+      migrations_setup:
+        condition: service_completed_successfully
+    environment:
+      - GOOSE_VERBOSE=true
+      - GOOSE_COMMAND=up-to
+      - GOOSE_COMMAND_ARG=20250325000055
+
+  # Asserting contents of the table.
+  assert_up_to:
+    extends:
+      file: base.compose.yml
+      service: .assert
+    depends_on:
+      migrations_up_to:
+        condition: service_completed_successfully
+    command: [ "In the beginning was the Word, and the Word was with God, and the Word was God. He was with God in the beginning." ]
+
+  cleanup_up_to:
+    extends:
+      file: base.compose.yml
+      service: .cleanup
+    depends_on:
+      assert_up_to:
+        condition: service_completed_successfully
+
+  # Test up command.
+  migrations_up:
+    extends:
+      file: base.compose.yml
+      service: .migrate
+    depends_on:
+      cleanup_up_to:
+        condition: service_completed_successfully
+    environment:
+      - GOOSE_VERBOSE=true
+    volumes:
+      - ./migrations/migrations:/migrations
+      - ./.testup.env:/goose-docker/.env
+
+  # Asserting contents of the table.
+  assert_up:
+    extends:
+      file: base.compose.yml
+      service: .assert
+    depends_on:
+      migrations_up:
+        condition: service_completed_successfully
+    command: [ "In the beginning was the Word, and the Word was with God, and the Word was God. He was with God in the beginning. Through him all things were made; without him nothing was made that has been made." ]
