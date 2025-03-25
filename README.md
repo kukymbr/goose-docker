@@ -37,6 +37,20 @@ The following environment variables are available, but not required:
 See the [goose usage](https://github.com/pressly/goose#usage) 
 for available drivers, format of the connection string and available commands.
 
+#### .env file for a goose
+
+To pass environment variables to the goose via the `.env` file 
+(available in goose since v3.24.0, 
+see the [goose doc](https://github.com/pressly/goose#environment-variables) for info),
+mount `.env` file to the `/goose-docker` directory, for example:
+
+```shell
+docker run --rm -v ./migrations:/migrations -v my_goose.env:/goose-docker/.env --network host \
+  -e GOOSE_DRIVER="postgres" \
+  -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
+  ghcr.io/kukymbr/goose-docker:3.24.1
+```
+
 ### Migration Files Directory
 
 The image expects the `/migrations` directory to be mounted to the container, 
