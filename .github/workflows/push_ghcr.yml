@@ -13,6 +13,7 @@ env:
 
 jobs:
   push_ghcr:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       packages: write
