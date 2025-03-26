@@ -30,7 +30,7 @@ go_down
 echo "⚙️ Running the setup containers..."
 docker compose --file "$setupFilename" up -d --remove-orphans $setupContainers || fail "Failed to run setup containers"
 
-echo "⚙️ Running the tests containers..."
+echo "▶️ Running the tests containers..."
 docker compose --file "$testsFilename" up --build --remove-orphans $testsContainers
 
 result=$?
