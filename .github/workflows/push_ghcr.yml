@@ -69,6 +69,13 @@ jobs:
           platforms: linux/amd64, linux/arm64
           push: true
           tags: ${{ env.IMAGE_ID }}:${{ env.VERSION }}
+          labels: | 
+            org.opencontainers.image.vendor="${{ github.repository_owner }}"
+            org.opencontainers.image.title="${{ vars.LABEL_TITLE }}"
+            org.opencontainers.image.description="${{ vars.LABEL_DESCRIPTION }}"
+            org.opencontainers.image.source="${{ github.server_url }}/${{ github.repository }}"
+            org.opencontainers.image.licenses="${{ vars.LABEL_LICENSES }}"
+            org.opencontainers.image.version="v${{ env.VERSION }}"
 
       - name: Test docker compose
         run: |
