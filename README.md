@@ -106,6 +106,7 @@ services:
 ```
 
 See the [compose.yml](compose.yml) file for the full example.
+Also, the [tests/compose.yml](tests/compose.yml) file contains example of usage with multiple databases.
 
 #### Overriding the environment variables
 
