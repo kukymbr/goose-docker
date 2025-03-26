@@ -1,6 +1,10 @@
 FROM alpine:3
-MAINTAINER kukymbr
-LABEL description="goose migrations in docker"
+
+LABEL org.opencontainers.image.vendor="kukymbr"
+LABEL org.opencontainers.image.title="Goose Docker image"
+LABEL org.opencontainers.image.description="The pressly/goose database migrator"
+LABEL org.opencontainers.image.source="https://github.com/kukymbr/goose-docker"
+LABEL org.opencontainers.image.licenses="MIT"
 
 ENV GOOSE_VERSION_TAG="v3.24.1"
 
