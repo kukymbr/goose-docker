@@ -135,6 +135,10 @@ The ARM64 architecture support is added since the v3.23.0.
 The `latest` tag of this image points to the latest commit to the `main` branch 
 and not supposed to be used in the production. Always specify a semver tag for production use.
 
+## Contributing
+
+Please, refer the [CONTRIBUTING.md](CONTRIBUTING.md) for contribution info.
+
 ## License
 
 [MIT licensed](LICENSE).
