@@ -127,6 +127,19 @@ When you can override the values:
 GOOSE_COMMAND="create" GOOSE_COMMAND_ARG="test_migration sql" docker compose run --rm migrations
 ```
 
+### Embedding migrations files
+
+If you don't want or don't have an option to add migrations files as a volume,
+create a `Dockerfile` extending the `goose-docker` image and add your files into it:
+
+```Dockerfile
+FROM ghcr.io/kukymbr/goose-docker:3.24.2
+
+ADD /path/to/migrations /migrations
+```
+
+Then build it and use it instead of the `goose-docker` image as usual.
+
 ### amd64/arm64 architecture
 
 The ARM64 architecture support is added since the v3.23.0.
