@@ -46,7 +46,7 @@ jobs:
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           
           # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          VERSION=$(echo "${{ github.ref_name }}"
           
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
@@ -54,8 +54,10 @@ jobs:
           # Use Docker `latest` tag convention
           [ "$VERSION" == "main" ] && VERSION=latest
           
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
+          echo "github.ref=${{ github.ref }}"
+          echo "github.ref_name=${{ github.ref_name }}"
+          echo "IMAGE_ID=$IMAGE_ID"
+          echo "VERSION=$VERSION"
           
           echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_ENV
@@ -66,7 +68,7 @@ jobs:
           platforms: linux/amd64, linux/arm64
           push: true
           tags: ${{ env.IMAGE_ID }}:${{ env.VERSION }}
-          labels: |
+          labels: | 
             org.opencontainers.image.vendor="${{ github.repository_owner }}"
             org.opencontainers.image.title="${{ vars.LABEL_TITLE }}"
             org.opencontainers.image.description="${{ vars.LABEL_DESCRIPTION }}"
