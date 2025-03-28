@@ -56,3 +56,5 @@ replace_in_file() {
 
 files=$(find "$findIn" -name '*.env' -or -name 'Dockerfile' -or -name '*.md' -or -name '*.yml' ! -name '*tests/.env')
 for f in $files; do replace_in_file "$f"; done
+
+echo "👍 All done."
