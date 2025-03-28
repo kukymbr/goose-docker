@@ -34,6 +34,8 @@ The following environment variables are available, but not required:
 - `GOOSE_COMMAND_ARG`: argument for the goose command,
   for example, the `VERSION` argument for the `up-to`/`down-to` commands.
 - `GOOSE_VERBOSE`: if set to `true`, goose will be executed with the `-v` flag.
+- `GOOSE_EXTRA_ARGS`: additional goose arguments, for example `GOOSE_EXTRA_ARGS="-table=_db_version -allow-missing"`
+  (available in the `latest` tag only until the next goose release).
 
 See the [goose usage](https://github.com/pressly/goose#usage) 
 for available drivers, format of the connection string and available commands.
