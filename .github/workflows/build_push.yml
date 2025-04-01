@@ -13,6 +13,10 @@ env:
 
 jobs:
   build_and_push:
+    strategy:
+      matrix:
+        image: [ "goose-docker", "cmd" ]
+
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
@@ -49,8 +53,14 @@ jobs:
       - name: Generate names
         id: names
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
-          DOCKER_HUB_IMAGE_ID=${{ vars.DOCKERHUB_GROUP }}/${{ env.IMAGE_NAME }}
+          TARGET_IMAGE_NAME=${{ env.IMAGE_NAME }}
+          [ "${{ matrix.image }}" != ${{ env.IMAGE_NAME }} ] && TARGET_IMAGE_NAME="${{ env.IMAGE_NAME }}-${{ matrix.image }}"
+          
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$TARGET_IMAGE_NAME
+          DOCKER_HUB_IMAGE_ID=${{ vars.DOCKERHUB_GROUP }}/$TARGET_IMAGE_NAME
+
+          DOCKERFILE="Dockerfile"
+           [ "${{ matrix.image }}" != ${{ env.IMAGE_NAME }} ] && DOCKERFILE="${{ matrix.image }}.Dockerfile"
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
@@ -67,10 +77,12 @@ jobs:
           
           echo "github.ref=${{ github.ref }}"
           echo "github.ref_name=${{ github.ref_name }}"
+          echo "DOCKERFILE=$DOCKERFILE"
           echo "IMAGE_ID=$IMAGE_ID"
           echo "DOCKER_HUB_IMAGE_ID=$DOCKER_HUB_IMAGE_ID"
           echo "VERSION=$VERSION"
           
+          echo "DOCKERFILE=$DOCKERFILE" >> $GITHUB_ENV
           echo "IMAGE_ID=$IMAGE_ID" >> $GITHUB_ENV
           echo "DOCKER_HUB_IMAGE_ID=$DOCKER_HUB_IMAGE_ID" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_ENV
@@ -80,6 +92,7 @@ jobs:
         with:
           platforms: linux/amd64, linux/arm64
           push: true
+          file: ${{ env.DOCKERFILE }}
           tags: |
             ${{ env.IMAGE_ID }}:${{ env.VERSION }}
             ${{ env.DOCKER_HUB_IMAGE_ID }}:${{ env.VERSION }}
