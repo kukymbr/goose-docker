@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  push_ghcr:
+  run_tests:
     runs-on: ubuntu-latest
     permissions:
       contents: read
