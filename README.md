@@ -21,7 +21,7 @@ Features:
 
 Looking for a pure goose wrapper with no sugar around?
 
-👉 Check out the [command wrapper mode](docs/command-wrapper) document.
+👉 Check out the [command wrapper mode](docs/command-wrapper.md) document.
 
 ## Usage
 
