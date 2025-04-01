@@ -12,11 +12,17 @@ Docker configuration for the [pressly/goose](https://github.com/pressly/goose) m
 
 Based on ideas of the `gomicro/docker-goose` repository.
 Features:
-* No need to create your own Dockerfile;
+* No need to create your own Dockerfile (but you still may);
 * goose env vars are used;
 * docker compose usage;
 * all goose commands are available, not only `up`;
 * an image with a gopher in a goose costume in a box is even worse than an image with a gopher in a goose costume.
+
+## Pure goose command wrapper
+
+Looking for a pure goose wrapper with no sugar around?
+
+👉 Check out the [command wrapper mode](docs/command-wrapper) document.
 
 ## Usage
 
