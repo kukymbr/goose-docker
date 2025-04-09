@@ -23,6 +23,27 @@ Looking for a pure goose wrapper with no sugar around?
 
 👉 Check out the [command wrapper mode](docs/command-wrapper.md) document.
 
+<details>
+  <summary><b>What's the difference?</b></summary>
+
+The pure command wrapper uses a `goose` command as a docker's entrypoint 
+instead of the [entrypoint.sh](entrypoint.sh) script:
+
+```Dockerfile
+ENTRYPOINT ["/bin/goose"]
+```
+
+This allows you to get a full control what are you passing to the `goose` command, for example:
+
+```shell
+docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
+     --v ./path/to/your/migrations:/migrations \
+     -e GOOSE_MIGRATION_DIR="/migrations" \
+     -e GOOSE_DRIVER="postgres" \
+     create my_new_feature sql
+```
+</details>
+
 ## Usage
 
 ### Image Environment Variables
