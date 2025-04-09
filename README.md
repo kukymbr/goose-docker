@@ -37,10 +37,18 @@ This allows you to get a full control what are you passing to the `goose` comman
 
 ```shell
 docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
-     --v ./path/to/your/migrations:/migrations \
+     -v ./path/to/your/migrations:/migrations \
      -e GOOSE_MIGRATION_DIR="/migrations" \
      -e GOOSE_DRIVER="postgres" \
      create my_new_feature sql
+```
+
+or:
+
+```shell
+docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
+     -v ./path/to/your/migrations:/migrations \
+     postgres "user=postgres dbname=postgres sslmode=disable" up-to 
 ```
 </details>
 

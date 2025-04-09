@@ -34,7 +34,7 @@ Running the `up` command:
 
 ```shell
 docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
-     --v ./path/to/your/migrations:/migrations \
+     -v ./path/to/your/migrations:/migrations \
      -e GOOSE_MIGRATION_DIR="/migrations" \
      -e GOOSE_DRIVER="postgres" \
      -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres  sslmode=disable" \
@@ -45,16 +45,15 @@ Running the `up-to` command:
 
 ```shell
 docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
-     --v ./path/to/your/migrations:/migrations \
-     postgres "user=postgres dbname=postgres sslmode=disable" \
-     up-to 
+     -v ./path/to/your/migrations:/migrations \
+     postgres "user=postgres dbname=postgres sslmode=disable" up-to 
 ```
 
 Running the `create` command:
 
 ```shell
 docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
-     --v ./path/to/your/migrations:/migrations \
+     -v ./path/to/your/migrations:/migrations \
      -e GOOSE_MIGRATION_DIR="/migrations" \
      -e GOOSE_DRIVER="postgres" \
      create my_new_feature sql
