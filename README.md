@@ -36,19 +36,19 @@ ENTRYPOINT ["/bin/goose"]
 This allows you to get a full control what are you passing to the `goose` command, for example:
 
 ```shell
-docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
-     -v ./path/to/your/migrations:/migrations \
+docker run --rm -v ./migrations:/migrations \
      -e GOOSE_MIGRATION_DIR="/migrations" \
      -e GOOSE_DRIVER="postgres" \
+     ghcr.io/kukymbr/goose-docker-cmd:latest \
      create my_new_feature sql
 ```
 
 or:
 
 ```shell
-docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
-     -v ./path/to/your/migrations:/migrations \
-     postgres "user=postgres dbname=postgres sslmode=disable" up-to 
+docker run --rm -v ./migrations:/migrations \
+     ghcr.io/kukymbr/goose-docker-cmd:latest \
+     -dir="/migrations" postgres "user=postgres dbname=postgres sslmode=disable" up-to 20230607203836
 ```
 </details>
 

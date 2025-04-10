@@ -33,29 +33,28 @@ After adding a migrations, run an image with a required goose arguments.
 Running the `up` command:
 
 ```shell
-docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
-     -v ./path/to/your/migrations:/migrations \
+docker run --rm -v ./path/to/your/migrations:/migrations \
      -e GOOSE_MIGRATION_DIR="/migrations" \
      -e GOOSE_DRIVER="postgres" \
      -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres  sslmode=disable" \
-     up
+     ghcr.io/kukymbr/goose-docker-cmd:latest up
 ```
 
 Running the `up-to` command:
 
 ```shell
-docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
-     -v ./path/to/your/migrations:/migrations \
-     postgres "user=postgres dbname=postgres sslmode=disable" up-to 
+docker run --rm -v ./path/to/your/migrations:/migrations \
+     ghcr.io/kukymbr/goose-docker-cmd:latest \
+     -dir="/migrations" postgres "user=postgres dbname=postgres sslmode=disable" up-to 20230607203836
 ```
 
 Running the `create` command:
 
 ```shell
-docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
-     -v ./path/to/your/migrations:/migrations \
+docker run --rm -v ./path/to/your/migrations:/migrations \
      -e GOOSE_MIGRATION_DIR="/migrations" \
      -e GOOSE_DRIVER="postgres" \
+     ghcr.io/kukymbr/goose-docker-cmd:latest \
      create my_new_feature sql
 ```
 
