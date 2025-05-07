@@ -14,14 +14,14 @@ There are two ways to add your migration files into the image:
 
 1. creating your own Dockerfile:
    ```Dockerfile
-   FROM ghcr.io/kukymbr/goose-docker-cmd:latest
+   FROM ghcr.io/kukymbr/goose-docker-cmd:v3.24.3
    
    ENV GOOSE_MIGRATION_DIR=/migrations
    ADD ./path/to/your/migrations /migrations
    ```
 2. using a volume:
    ```shell
-   docker run --rm ghcr.io/kukymbr/goose-docker-cmd:latest \
+   docker run --rm ghcr.io/kukymbr/goose-docker-cmd:v3.24.3 \
      -v ./path/to/your/migrations:/migrations \
      <other arguments>
    ```
@@ -37,14 +37,14 @@ docker run --rm -v ./path/to/your/migrations:/migrations \
      -e GOOSE_MIGRATION_DIR="/migrations" \
      -e GOOSE_DRIVER="postgres" \
      -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres  sslmode=disable" \
-     ghcr.io/kukymbr/goose-docker-cmd:latest up
+     ghcr.io/kukymbr/goose-docker-cmd:v3.24.3 up
 ```
 
 Running the `up-to` command:
 
 ```shell
 docker run --rm -v ./path/to/your/migrations:/migrations \
-     ghcr.io/kukymbr/goose-docker-cmd:latest \
+     ghcr.io/kukymbr/goose-docker-cmd:v3.24.3 \
      -dir="/migrations" postgres "user=postgres dbname=postgres sslmode=disable" up-to 20230607203836
 ```
 
@@ -54,7 +54,7 @@ Running the `create` command:
 docker run --rm -v ./path/to/your/migrations:/migrations \
      -e GOOSE_MIGRATION_DIR="/migrations" \
      -e GOOSE_DRIVER="postgres" \
-     ghcr.io/kukymbr/goose-docker-cmd:latest \
+     ghcr.io/kukymbr/goose-docker-cmd:v3.24.3 \
      create my_new_feature sql
 ```
 
@@ -65,7 +65,7 @@ services:
   # ... Add your DB service
   
   migrations:
-    image: ghcr.io/kukymbr/goose-docker-cmd:latest
+    image: ghcr.io/kukymbr/goose-docker-cmd:v3.24.3
     environment:
       - GOOSE_DRIVER=postgres
       - GOOSE_DBSTRING=host=postgres port=5432 user=postgres password=postgres dbname=postgres
