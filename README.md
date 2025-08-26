@@ -39,7 +39,7 @@ This allows you to get a full control what are you passing to the `goose` comman
 docker run --rm -v ./migrations:/migrations \
      -e GOOSE_MIGRATION_DIR="/migrations" \
      -e GOOSE_DRIVER="postgres" \
-     ghcr.io/kukymbr/goose-docker-cmd:v3.24.3 \
+     ghcr.io/kukymbr/goose-docker-cmd:v3.25.0 \
      create my_new_feature sql
 ```
 
@@ -47,7 +47,7 @@ or:
 
 ```shell
 docker run --rm -v ./migrations:/migrations \
-     ghcr.io/kukymbr/goose-docker-cmd:v3.24.3 \
+     ghcr.io/kukymbr/goose-docker-cmd:v3.25.0 \
      -dir="/migrations" postgres "user=postgres dbname=postgres sslmode=disable" up-to 20230607203836
 ```
 </details>
@@ -84,7 +84,7 @@ mount `.env` file to the `/goose-docker` directory, for example:
 docker run --rm -v ./migrations:/migrations -v my_goose.env:/goose-docker/.env --network host \
   -e GOOSE_DRIVER="postgres" \
   -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
-  ghcr.io/kukymbr/goose-docker:3.24.3
+  ghcr.io/kukymbr/goose-docker:3.25.0
 ```
 
 ### Migration Files Directory
@@ -100,7 +100,7 @@ For example, pure docker call:
 docker run --rm -v ./migrations:/migrations --network host \
   -e GOOSE_DRIVER="postgres" \
   -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
-  ghcr.io/kukymbr/goose-docker:3.24.3
+  ghcr.io/kukymbr/goose-docker:3.25.0
 ```
 
 Example with `up-to` command:
@@ -111,7 +111,7 @@ docker run --rm -v ./migrations:/migrations --network host \
   -e GOOSE_COMMAND_ARG="20230607203836" \
   -e GOOSE_DRIVER="postgres" \
   -e GOOSE_DBSTRING="host=localhost port=5432 user=postgres password=postgres dbname=postgres" \
-  ghcr.io/kukymbr/goose-docker:3.24.3
+  ghcr.io/kukymbr/goose-docker:3.25.0
 ```
 
 Example with `create` command (works since v3.20.0):
@@ -120,7 +120,7 @@ Example with `create` command (works since v3.20.0):
 docker run --rm -v ./migrations:/migrations \
   -e GOOSE_COMMAND="create" \
   -e GOOSE_COMMAND_ARG="my_new_migration_name sql" \
-  ghcr.io/kukymbr/goose-docker:v3.24.3
+  ghcr.io/kukymbr/goose-docker:v3.25.0
 ```
 
 ### docker compose
@@ -132,7 +132,7 @@ services:
   # ... Add your DB service
   
   migrations:
-    image: ghcr.io/kukymbr/goose-docker:3.24.3
+    image: ghcr.io/kukymbr/goose-docker:3.25.0
     environment:
       - GOOSE_DRIVER=postgres
       - GOOSE_DBSTRING=host=postgres port=5432 user=postgres password=postgres dbname=postgres
@@ -168,7 +168,7 @@ If you don't want or don't have an option to add migrations files as a volume,
 create a `Dockerfile` extending the `goose-docker` image and add your files into it:
 
 ```Dockerfile
-FROM ghcr.io/kukymbr/goose-docker:3.24.3
+FROM ghcr.io/kukymbr/goose-docker:3.25.0
 
 ADD /path/to/migrations /migrations
 ```
