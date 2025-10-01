@@ -11,6 +11,7 @@ Docker configuration for the [pressly/goose](https://github.com/pressly/goose) m
 
 Based on ideas of the `gomicro/docker-goose` repository.
 Features:
+
 * No need to create your own Dockerfile (but you still may);
 * goose env vars are used;
 * docker compose usage;
@@ -26,7 +27,7 @@ Looking for a pure goose wrapper with no sugar around?
 <details>
   <summary><b>What's the difference?</b></summary>
 
-The pure command wrapper uses a `goose` command as a docker's entrypoint 
+The pure command wrapper uses a `goose` command as a docker's entrypoint
 instead of the [entrypoint.sh](entrypoint.sh) script:
 
 ```Dockerfile
@@ -50,33 +51,31 @@ docker run --rm -v ./migrations:/migrations \
      ghcr.io/kukymbr/goose-docker-cmd:v3.25.0 \
      -dir="/migrations" postgres "user=postgres dbname=postgres sslmode=disable" up-to 20230607203836
 ```
+
 </details>
 
 ## Usage
 
 ### Image Environment Variables
 
-The following environment variables are required for the image to work correctly:
+The image supports the following environment variables:
 
-- `GOOSE_DRIVER`: this should specify the database driver (e.g., `postgres`).
-- `GOOSE_DBSTRING`: specify the database connection parameters in this variable 
-  (e.g., `host=localhost port=5432 user=postgres password=postgres dbname=postgres`).
+| Variable            | Required | Description                                                                                                                                    | Default value |
+|---------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| `GOOSE_DRIVER`      | ✅        | this should specify the database driver (e.g., `postgres`)                                                                                     | none          |
+| `GOOSE_COMMAND`     | ✅        | specify the database connection parameters in this variable (e.g., `host=localhost port=5432 user=postgres password=postgres dbname=postgres`) | none          |
+| `GOOSE_COMMAND`     |          | the goose command to execute                                                                                                                   | `up`          |
+| `GOOSE_COMMAND_ARG` |          | argument for the goose command, for example, the `VERSION` argument for the `up-to`/`down-to` commands                                         | none          |
+| `GOOSE_EXTRA_ARGS`  |          | additional goose arguments, for example `GOOSE_EXTRA_ARGS="-table=_db_version -allow-missing"`                                                 | none          |
+| `GOOSE_VERBOSE`     |          | if set to `true`, goose will be executed with the `-v` flag                                                                                    | `false`       |
 
-The following environment variables are available, but not required:
-
-- `GOOSE_COMMAND`: the goose command to execute, `up` by default.
-- `GOOSE_COMMAND_ARG`: argument for the goose command,
-  for example, the `VERSION` argument for the `up-to`/`down-to` commands.
-- `GOOSE_VERBOSE`: if set to `true`, goose will be executed with the `-v` flag.
-- `GOOSE_EXTRA_ARGS`: additional goose arguments, for example `GOOSE_EXTRA_ARGS="-table=_db_version -allow-missing"`.
-
-See the [goose usage](https://github.com/pressly/goose#usage) 
+See the [goose usage](https://github.com/pressly/goose#usage)
 for available drivers, format of the connection string and available commands.
 
 #### .env file for a goose
 
-To pass environment variables to the goose via the `.env` file 
-(available in goose since v3.24.0, 
+To pass environment variables to the goose via the `.env` file
+(available in goose since v3.24.0,
 see the [goose doc](https://github.com/pressly/goose#environment-variables) for info),
 mount `.env` file to the `/goose-docker` directory, for example:
 
@@ -89,7 +88,7 @@ docker run --rm -v ./migrations:/migrations -v my_goose.env:/goose-docker/.env -
 
 ### Migration Files Directory
 
-The image expects the `/migrations` directory to be mounted to the container, 
+The image expects the `/migrations` directory to be mounted to the container,
 and it should contain your migration files.
 
 ### Example Usage
@@ -130,7 +129,7 @@ Docker compose example:
 ```yaml
 services:
   # ... Add your DB service
-  
+
   migrations:
     image: ghcr.io/kukymbr/goose-docker:3.25.0
     environment:
@@ -181,7 +180,7 @@ The ARM64 architecture support is added since the v3.23.0.
 
 ### The `latest` tag notice
 
-The `latest` tag of this image points to the latest commit to the `main` branch 
+The `latest` tag of this image points to the latest commit to the `main` branch
 and not supposed to be used in the production. Always specify a semver tag for production use.
 
 ## Contributing
