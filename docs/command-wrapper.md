@@ -4,10 +4,6 @@ To use `goose-docker` as a `goose` command wrapper without any sugar around,
 get an image with a `-cmd` suffix. It contains the goose executable as an entrypoint
 without any predefined arguments.
 
-The latest one is `ghcr.io/kukymbr/goose-docker-cmd:v3.25.0`.
-
-Versioned tag will be available after the next goose release.
-
 ## Usage
 
 There are two ways to add your migration files into the image:
