@@ -63,7 +63,7 @@ The image supports the following environment variables:
 | Variable            | Required | Description                                                                                                                                    | Default value |
 |---------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | `GOOSE_DRIVER`      | ✅        | this should specify the database driver (e.g., `postgres`)                                                                                     | none          |
-| `GOOSE_COMMAND`     | ✅        | specify the database connection parameters in this variable (e.g., `host=localhost port=5432 user=postgres password=postgres dbname=postgres`) | none          |
+| `GOOSE_DBSTRING`    | ✅        | specify the database connection parameters in this variable (e.g., `host=localhost port=5432 user=postgres password=postgres dbname=postgres`) | none          |
 | `GOOSE_COMMAND`     |          | the goose command to execute                                                                                                                   | `up`          |
 | `GOOSE_COMMAND_ARG` |          | argument for the goose command, for example, the `VERSION` argument for the `up-to`/`down-to` commands                                         | none          |
 | `GOOSE_EXTRA_ARGS`  |          | additional goose arguments, for example `GOOSE_EXTRA_ARGS="-table=_db_version -allow-missing"`                                                 | none          |
