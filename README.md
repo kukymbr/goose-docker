@@ -140,7 +140,7 @@ services:
 ```
 
 See the [compose.yml](compose.yml) file for the full example.
-Also, the [tests/compose.yml](tests/compose.yml) file contains example of usage with multiple databases.
+Also, the [tests/compose.yml](tests/compose.yml) file contains an example of usage with multiple databases.
 
 #### Overriding the environment variables
 
@@ -163,7 +163,7 @@ GOOSE_COMMAND="create" GOOSE_COMMAND_ARG="test_migration sql" docker compose run
 
 ### Embedding migrations files
 
-If you don't want or don't have an option to add migrations files as a volume,
+If you don't want or can't add migration files as a volume,
 create a `Dockerfile` extending the `goose-docker` image and add your files into it:
 
 ```Dockerfile
@@ -185,7 +185,7 @@ and not supposed to be used in the production. Always specify a semver tag for p
 
 ## Contributing
 
-Please, refer the [CONTRIBUTING.md](CONTRIBUTING.md) for contribution info.
+Please refer the [CONTRIBUTING.md](CONTRIBUTING.md) for contribution info.
 
 ## License
 
