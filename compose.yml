@@ -2,7 +2,7 @@ services:
 
   # Database, postgres for example
   postgres:
-    image: postgres:15-alpine
+    image: postgres:alpine
     restart: unless-stopped
     env_file:
       - .env

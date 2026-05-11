@@ -2,7 +2,7 @@ services:
 
   # Postgres to run the tests.
   goose_docker_test_postgres:
-    image: postgres:15-alpine
+    image: postgres:alpine
     hostname: ${POSTGRES_HOSTNAME}
     container_name: ${POSTGRES_HOSTNAME}
     restart: unless-stopped
