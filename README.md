@@ -2,7 +2,7 @@
 
 # [goose-docker](https://github.com/kukymbr/goose-docker)
 
-[![License](https://img.shields.io/github/license/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/blob/main/LICENSE)
 [![Release](https://img.shields.io/github/release/kukymbr/goose-docker.svg)](https://github.com/kukymbr/goose-docker/releases/latest)
 [![tests status](https://img.shields.io/github/actions/workflow/status/kukymbr/goose-docker/tests.yml?label=tests)](https://github.com/kukymbr/goose-docker/actions/workflows/tests.yml)
 [![image status](https://img.shields.io/github/actions/workflow/status/kukymbr/goose-docker/build_push.yml?label=image)](https://github.com/kukymbr/goose-docker/actions/workflows/build_push.yml)
