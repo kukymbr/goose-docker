@@ -1,5 +1,4 @@
 FROM alpine:3
-MAINTAINER kukymbr
 LABEL description="psql client for goose-docker testing purposes"
 
 RUN apk --no-cache add postgresql-client
