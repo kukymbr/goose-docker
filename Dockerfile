@@ -1,6 +1,6 @@
 FROM alpine:3
 
-ARG GOOSE_VERSION_TAG="v3.27.3"
+ARG GOOSE_VERSION_TAG="v3.28.0"
 ARG TARGETARCH
 
 RUN apk update && \

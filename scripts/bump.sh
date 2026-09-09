@@ -3,7 +3,7 @@
 fail() {
   if [ "$1" != "" ]; then
     echo "😢 $1"
-    echo "Usage: bump.sh <next_semver_tag>, for example: bump.sh v3.27.2"
+    echo "Usage: bump.sh <next_semver_tag>, for example: bump.sh v3.27.3"
   fi
 
   exit 1
